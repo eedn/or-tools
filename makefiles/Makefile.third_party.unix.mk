@@ -228,8 +228,8 @@ install_gflags: dependencies/install/lib/libgflags.$L
 dependencies/install/lib/libgflags.$L: dependencies/sources/gflags-$(GFLAGS_TAG) | dependencies/install
 	cd dependencies/sources/gflags-$(GFLAGS_TAG) && \
   $(SET_COMPILER) $(CMAKE) -H. -Bbuild_cmake \
-    -DBUILD_SHARED_LIBS=ON \
-    -DBUILD_STATIC_LIBS=OFF \
+    -DBUILD_SHARED_LIBS=OFF \
+    -DBUILD_STATIC_LIBS=ON \
     -DBUILD_TESTING=OFF \
     -DGFLAGS_NAMESPACE=gflags \
     -DCMAKE_CXX_FLAGS="-fPIC $(MAC_VERSION)" \
@@ -246,7 +246,7 @@ GFLAGS_SWIG = $(GFLAGS_INC)
 STATIC_GFLAGS_LNK = $(UNIX_GFLAGS_DIR)/lib/libgflags.a
 DYNAMIC_GFLAGS_LNK = -L$(UNIX_GFLAGS_DIR)/lib -lgflags
 
-GFLAGS_LNK = $(DYNAMIC_GFLAGS_LNK)
+GFLAGS_LNK = $(STATIC_GFLAGS_LNK)
 
 DEPENDENCIES_INC += $(GFLAGS_INC)
 SWIG_INC += $(GFLAGS_SWIG)
