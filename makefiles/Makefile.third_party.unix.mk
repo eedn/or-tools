@@ -264,7 +264,7 @@ dependencies/install/lib/libglog.$L: dependencies/install/lib/libgflags.$L depen
 	cd dependencies/sources/glog-$(GLOG_TAG) && \
   $(SET_COMPILER) $(CMAKE) -H. -Bbuild_cmake \
     -DCMAKE_PREFIX_PATH="$(OR_TOOLS_TOP)/dependencies/install" \
-    -DBUILD_SHARED_LIBS=ON \
+    -DBUILD_SHARED_LIBS=OFF \
     -DBUILD_TESTING=OFF \
     -DCMAKE_CXX_FLAGS="-fPIC $(MAC_VERSION)" \
     -DCMAKE_SHARED_LINKER_FLAGS="-Wl,-rpath,\$$ORIGIN" \
@@ -281,7 +281,7 @@ GLOG_SWIG = $(GLOG_INC)
 STATIC_GLOG_LNK = $(UNIX_GLOG_DIR)/lib/libglog.a
 DYNAMIC_GLOG_LNK = -L$(UNIX_GLOG_DIR)/lib -lglog
 
-GLOG_LNK = $(DYNAMIC_GLOG_LNK)
+GLOG_LNK = $(STATIC_GLOG_LNK)
 
 DEPENDENCIES_INC += $(GLOG_INC)
 SWIG_INC += $(GLOG_SWIG)
