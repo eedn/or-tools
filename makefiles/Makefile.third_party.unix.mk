@@ -299,7 +299,7 @@ dependencies/install/lib/libprotobuf.$L: dependencies/install/lib/libglog.$L dep
 	cd dependencies/sources/protobuf-$(PROTOBUF_TAG) && \
   $(SET_COMPILER) $(CMAKE) -Hcmake -Bbuild_cmake \
     -DCMAKE_PREFIX_PATH="$(OR_TOOLS_TOP)/dependencies/install" \
-    -DBUILD_SHARED_LIBS=ON \
+    -DBUILD_SHARED_LIBS=OFF \
     -DBUILD_TESTING=OFF \
     -Dprotobuf_BUILD_TESTS=OFF \
     -Dprotobuf_BUILD_EXAMPLES=OFF \
@@ -331,7 +331,7 @@ _PROTOBUF_LIB_DIR = $(dir $(wildcard \
  $(UNIX_PROTOBUF_DIR)/lib/*/libprotobuf.$L))
 DYNAMIC_PROTOBUF_LNK = -L$(_PROTOBUF_LIB_DIR) -lprotobuf
 
-PROTOBUF_LNK = $(DYNAMIC_PROTOBUF_LNK)
+PROTOBUF_LNK = $(STATIC_PROTOBUF_LNK)
 
 DEPENDENCIES_INC += $(PROTOBUF_INC)
 SWIG_INC += $(PROTOBUF_SWIG)
